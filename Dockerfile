@@ -11,8 +11,8 @@ RUN apk add --no-cache\
 
 WORKDIR /root
 
-ADD functions /
+ADD functions ./
 
-ADD run.sh /
-RUN chmod +x /onekey.sh
-ENTRYPOINT ["sh", "/onekey.sh"]
+ADD run.sh ./
+RUN chmod +x ./run.sh
+ENTRYPOINT ["sh", "./run.sh"]
