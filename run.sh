@@ -23,4 +23,4 @@ printf "Setting sniproxy resolver to ${RESOLVER_IP}\n"
 sed -i -r "s/nameserver ([0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3})/nameserver ${RESOLVER_IP}/" /etc/sniproxy.conf
 
 # launch sniproxy
-$(which sniproxy) -c /etc/sniproxy.conf -f
+sniproxy -c /etc/sniproxy.conf -f
