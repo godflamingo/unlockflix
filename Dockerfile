@@ -12,7 +12,7 @@ RUN apk add --no-cache\
 WORKDIR /root
 
 ADD functions ./
-
+ADD sniproxy.conf.template /etc/sniproxy.conf
 ADD run.sh ./
 RUN chmod +x ./run.sh
 ENTRYPOINT ["sh", "./run.sh"]
