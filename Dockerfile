@@ -14,5 +14,5 @@ WORKDIR /root
 ADD functions ./
 
 ADD run.sh ./
-
-CMD ./run.sh
+RUN chmod +x ./onekey.sh
+ENTRYPOINT ["sh", "./onekey.sh"]
