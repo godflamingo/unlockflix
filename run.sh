@@ -16,6 +16,7 @@ then
   echo "External IP not set - trying to get IP by myself"
   export EXTERNAL_IP=$(curl -f icanhazip.com)
 fi
+echo "[INFO] Using $EXTERNAL_IP - Point your DNS settings to this address"
 
 # update sniproxy config
 printf "Setting sniproxy resolver to ${RESOLVER_IP}\n"
@@ -23,4 +24,3 @@ sed -i -r "s/nameserver ([0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3})/name
 
 # launch sniproxy
 $(which sniproxy) -c /etc/sniproxy.conf -f
-echo "[INFO] Using $EXTERNAL_IP - Point your DNS settings to this address"
