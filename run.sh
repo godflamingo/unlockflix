@@ -11,9 +11,16 @@ if [ -z ${RESOLVER_IP} ]; then
     RESOLVER_IP=8.8.8.8
 fi
 
+if [ -z ${EXTERNAL_IP} ];
+then
+  echo "External IP not set - trying to get IP by myself"
+  export EXTERNAL_IP=$(curl -f icanhazip.com)
+fi
+
 # update sniproxy config
 printf "Setting sniproxy resolver to ${RESOLVER_IP}\n"
 sed -i -r "s/nameserver ([0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3}+\.[0-9]{1,3})/nameserver ${RESOLVER_IP}/" /etc/sniproxy.conf
 
 # launch sniproxy
 $(which sniproxy) -c /etc/sniproxy.conf -f
+echo "[INFO] Using $EXTERNAL_IP - Point your DNS settings to this address"
